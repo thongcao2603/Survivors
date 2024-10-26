@@ -13,8 +13,6 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public float currentProjectileSpeed;
     [HideInInspector] public float currentMagnet;
 
-    //spawn weapon
-    public List<GameObject> spawnedWeapons;
 
     [Header("Exp/level")]
     public int experience = 0;
@@ -34,10 +32,17 @@ public class PlayerStats : MonoBehaviour
     float invincibilityTimer;
     bool isInvincible;
     public List<LevelRange> levelRanges;
+
+    InventoryManager inventory;
+    public int weaponIndex;
+    public int passiveItemIndex;
+
     private void Awake()
     {
         characterData = CharacterSelector.GetData();
         CharacterSelector.instance.DestroySingleton();
+
+        inventory = GetComponent<InventoryManager>();
 
         currentHealth = characterData.MaxHealth;
         currentRecovery = characterData.Recovery;
@@ -135,11 +140,21 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// thêm weapon vào inventory, chưa hoàn thành
+    /// </summary>
+    /// <param name="weapon"></param>
     public void SpawnWeapon(GameObject weapon)
     {
+        if (weaponIndex >= inventory.weaponSlots.Count - 1)
+        {
+            Debug.LogError("inventory alreay full");
+            return;
+        }
         GameObject spawnWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
         spawnWeapon.transform.SetParent(transform);
-        spawnedWeapons.Add(spawnWeapon);
+        inventory.AddWeapon(weaponIndex, spawnWeapon.GetComponent<WeaponController>());
+        weaponIndex++;
     }
 
 }

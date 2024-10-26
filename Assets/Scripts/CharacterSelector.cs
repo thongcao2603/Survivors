@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// chọn hero và truyển data từ scriptable object của hero cho scene game
+/// </summary>
 public class CharacterSelector : MonoBehaviour
 {
     public static CharacterSelector instance;

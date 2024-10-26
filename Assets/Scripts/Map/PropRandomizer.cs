@@ -13,12 +13,9 @@ public class PropRandomizer : MonoBehaviour
         SpawnProps();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    /// <summary>
+    /// tạo các props random trên map để player phá hủy có thể nhặt được exp hay heal
+    /// </summary>
     void SpawnProps()
     {
         foreach (GameObject sp in propSpawnPoints)

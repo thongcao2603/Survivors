@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// spawn chunk theo hướng di chuyển của player
+/// các vị trí left, right, up, down lấy theo vị trí của chunk hiện tại(current chunk)
+/// </summary>
 public class MapController : MonoBehaviour
 {
     public List<GameObject> terrainChunks;
@@ -108,6 +112,9 @@ public class MapController : MonoBehaviour
         spawnedChunks.Add(lastestChunk);
     }
 
+    /// <summary>
+    /// khoảng cách maxOpDist đang truyền là 20f, nếu đi xa hơn 20f, thì deactive chunk đó
+    /// </summary>
     void ChunkOptimizer()
     {
         optimizerCooldown -= Time.deltaTime;

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// tạo vật phẩm rơi ra khi phá hủy một vật thể tạo trên scene (không dùng với enemy)
+/// </summary>
 public class DropRateManager : MonoBehaviour
 {
     [System.Serializable]
